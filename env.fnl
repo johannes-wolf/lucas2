@@ -42,7 +42,7 @@
 (fn env.get-rulesets [self]
   "Get a list of ruleset names."
   (let [l (if self.parent (self.parent:get-rulesets) [])]
-    (list.append-list l (collect [k _ (pairs self.rules)] k))
+    (list.append-list l (collect [k _ (pairs (or self.rules {}))] (values k)))
     l))
 
 (fn env.get-attribute [self symbol attrib ?default]
